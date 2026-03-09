@@ -1,91 +1,101 @@
-# BioLungNet: AI-Powered Lung Cancer Detection from CT Scan Images
+# 🧬 BioLungNet: AI-Powered Lung Cancer Detection from CT Scan Images
 
 ## Overview
 
 BioLungNet is a deep learning-based framework designed for automated lung cancer detection using CT scan images.
+
 The model utilizes **DenseNet121 as the backbone architecture** combined with custom classification layers to classify CT images into three categories:
 
-* Normal
-* Benign
-* Malignant
+- Normal
+- Benign
+- Malignant
 
 The project applies **transfer learning, data augmentation, and deep convolutional neural networks** to improve diagnostic accuracy for computer-aided medical diagnosis systems.
 
 ---
 
-# Author
+## Author
 
-**Madhannath S**
-B.Tech Biotechnology
-Department of Biotechnology
-K.S. Rangasamy College of Technology
+**Madhannath S**  
+B.Tech Biotechnology  
+Department of Biotechnology  
+K.S. Rangasamy College of Technology  
 Tiruchengode, Tamil Nadu, India
 
 ---
 
-# Key Features
+## Key Features
 
-* Deep learning model using DenseNet121
-* Transfer learning for improved feature extraction
-* Albumentations-based data augmentation
-* Multi-class classification (Normal / Benign / Malignant)
-* Grad-CAM model interpretability
-* Single image prediction support
-* Confusion matrix and ROC evaluation
+- Deep learning model using DenseNet121
+- Transfer learning for improved feature extraction
+- Albumentations-based data augmentation
+- Multi-class classification (Normal / Benign / Malignant)
+- Grad-CAM model interpretability
+- Single image prediction support
+- Confusion matrix and ROC curve evaluation
 
 ---
 
-# Dataset
+## Dataset
 
 The model is trained using CT scan images categorized into three diagnostic classes.
 
-Dataset Classes:
+### Dataset Classes
 
-* Benign
-* Malignant
-* Normal
+- Benign
+- Malignant
+- Normal
 
-Original Dataset
+### Dataset Description
+
+**Original Dataset**
+
 Contains raw CT scan images collected from the dataset source.
 
-Trained Dataset
+**Trained Dataset**
+
 Contains processed and augmented images used for model training.
 
 ---
 
-# Data Augmentation
+## Data Augmentation
 
-Due to the limited dataset size, **Albumentations library** was used to increase dataset diversity.
+Due to the limited dataset size, the **Albumentations library** was used to increase dataset diversity.
 
-Augmentation techniques used:
+### Augmentation Techniques Used
 
-* CLAHE (Contrast Limited Adaptive Histogram Equalization)
-* Random Brightness and Contrast
-* Gamma Correction
-* Gaussian Noise
-* Affine Transformations
-* Elastic Transformations
-* Horizontal Flip
-* Coarse Dropout
+- CLAHE (Contrast Limited Adaptive Histogram Equalization)
+- Random Brightness and Contrast
+- Gamma Correction
+- Gaussian Noise
+- Affine Transformations
+- Elastic Transformations
+- Horizontal Flip
+- Coarse Dropout
 
-Images were resized to **224 × 224 pixels** before training.
+All images were resized to:
+
+224 × 224 pixels
+
+before training.
 
 ---
 
-# Model Architecture
+## Model Architecture
 
-## Backbone Network
+### Backbone Network
 
 DenseNet121 (Pretrained on ImageNet)
 
-## Custom Classification Head
+### Custom Classification Head
 
-```text id="arch1"}
+```python
 GlobalAveragePooling2D
 Dense(512)
 LeakyReLU
 BatchNormalization
 Dropout(0.5)
+
 Dense(256)
 LeakyReLU
 BatchNormalization
@@ -98,68 +108,69 @@ This architecture enables efficient feature reuse and improves classification ac
 
 ---
 
-Training Strategy:
+## Training Strategy
 
-Phase 1 – Feature Extraction
+### Phase 1 – Feature Extraction
+
 DenseNet backbone frozen while training custom layers.
 
-Phase 2 – Fine Tuning
+### Phase 2 – Fine Tuning
+
 Upper DenseNet layers unfrozen for improved feature learning.
 
-Callbacks Used:
+### Callbacks Used
 
-* EarlyStopping
-* ReduceLROnPlateau
-* ModelCheckpoint
+- EarlyStopping
+- ReduceLROnPlateau
+- ModelCheckpoint
 
 ---
 
-# Evaluation Metrics
+## Evaluation Metrics
 
 The model performance was evaluated using the following metrics:
 
-* Accuracy
-* Precision
-* Recall
-* F1 Score
-* ROC Curve
-* AUC Score
-* Confusion Matrix
+- Accuracy
+- Precision
+- Recall
+- F1 Score
+- ROC Curve
+- AUC Score
+- Confusion Matrix
 
 ---
 
-# Results
+## Results
 
-## Overall Performance
+### Overall Performance
 
-| Metric            | Score  |
-| ----------------- | ------ |
-| Accuracy          | 94.77% |
-| Weighted Recall   | 0.9477 |
+| Metric | Score |
+|------|------|
+| Accuracy | 94.77% |
+| Weighted Recall | 0.9477 |
 | Weighted F1 Score | 0.9477 |
 
----
+### Per-Class Performance
 
-## Per-Class Performance
-
-| Class     | Precision | Recall | F1 Score | AUC   |
-| --------- | --------- | ------ | -------- | ----- |
-| Benign    | 0.91      | 0.91   | 0.91     | 0.979 |
-| Malignant | 0.97      | 0.98   | 0.97     | 1.000 |
-| Normal    | 0.95      | 0.96   | 0.95     | 0.983 |
+| Class | Precision | Recall | F1 Score | AUC |
+|------|------|------|------|------|
+| Benign | 0.91 | 0.91 | 0.91 | 0.979 |
+| Malignant | 0.97 | 0.98 | 0.97 | 1.000 |
+| Normal | 0.95 | 0.96 | 0.95 | 0.983 |
 
 ---
 
-# Model Interpretability
+## Model Interpretability
 
 Grad-CAM visualization was used to understand model predictions.
+
 The heatmaps highlight lung regions that influenced the classification results, helping validate model decisions.
 
 ---
 
-# Program Structure
+## Project Structure
 
-```text id="struct1"}
+```
 BioLungNet-Lung-Cancer-Detection/
 │
 ├── Dataset/
@@ -174,61 +185,62 @@ BioLungNet-Lung-Cancer-Detection/
 │       └── Normal/
 │
 ├── Program/
-│   │
 │   ├── Model/
 │   │   └── Saved trained model files
 │   │
-│   ├── AgumentationProgram.py
-│   │   └── Performs dataset augmentation
+│   ├── AugmentationProgram.py
 │   │
 │   ├── BioLungNet_Main.ipynb
-│   │   └── Main training notebook
 │   │
 │   └── Single_Image_Predict.py
-│       └── Predict lung cancer from a single CT image
 │
-├── Result Image/
+├── Result Images/
 │   ├── confusion_matrix.png
 │   ├── accuracy_curve.png
 │   ├── loss_curve.png
 │   └── gradcam_visualization.png
+```
+
+---
+
+## Prediction Output
 
 The script will classify the CT scan image as:
 
-* Normal
-* Benign
-* Malignant
+- Normal
+- Benign
+- Malignant
 
 ---
 
-# Technologies Used
+## Technologies Used
 
-* Python
-* TensorFlow
-* NumPy
-* Pandas
-* Matplotlib
-* scikit-learn
-* Albumentations
-* Jupyter Notebook
-
----
-
-# Future Improvements
-
-* Integration with 3D CT scan models
-* Hybrid CNN–Transformer architecture
-* Larger clinical datasets
-* Real-time clinical deployment
+- Python
+- TensorFlow
+- NumPy
+- Pandas
+- Matplotlib
+- scikit-learn
+- Albumentations
+- Jupyter Notebook
 
 ---
 
-# License
+## Future Improvements
+
+- Integration with 3D CT scan models
+- Hybrid CNN–Transformer architecture
+- Larger clinical datasets
+- Real-time clinical deployment
+
+---
+
+## License
 
 This project is licensed under the **MIT License**.
 
 ---
 
-# Keywords
+## Keywords
 
-Lung Cancer Detection, Deep Learning, CT Scan Analysis, DenseNet121, Transfer Learning, BioLungNet, Medical Image Processing
+Lung Cancer Detection, Deep Learning, CT Scan Analysis, DenseNet121, Transfer Learning, BioLungNet, Medical Image Processing.
