@@ -45,22 +45,6 @@ Dataset Classes:
 * Malignant
 * Normal
 
-Dataset Structure:
-
-```text id="ds1"}
-Dataset/
-│
-├── Original Dataset/
-│   ├── Benign cases/
-│   ├── Malignant cases/
-│   └── Normal cases/
-│
-└── Trained Dataset/
-    ├── Benign/
-    ├── Malignant/
-    └── Normal/
-```
-
 Original Dataset
 Contains raw CT scan images collected from the dataset source.
 
@@ -102,7 +86,6 @@ Dense(512)
 LeakyReLU
 BatchNormalization
 Dropout(0.5)
-
 Dense(256)
 LeakyReLU
 BatchNormalization
@@ -114,16 +97,6 @@ Dense(3) Softmax
 This architecture enables efficient feature reuse and improves classification accuracy.
 
 ---
-
-# Training Configuration
-
-| Parameter     | Value                     |
-| ------------- | ------------------------- |
-| Optimizer     | Adam                      |
-| Loss Function | Categorical Cross Entropy |
-| Batch Size    | 32                        |
-| Epochs        | 20–25                     |
-| Input Size    | 224 × 224                 |
 
 Training Strategy:
 
@@ -219,58 +192,6 @@ BioLungNet-Lung-Cancer-Detection/
 │   ├── accuracy_curve.png
 │   ├── loss_curve.png
 │   └── gradcam_visualization.png
-│
-├── requirements.txt
-│
-└── README.md
-```
-
----
-
-# Running the Project
-
-## Step 1 — Clone the Repository
-
-```bash id="run1"}
-git clone https://github.com/yourusername/BioLungNet-Lung-Cancer-Detection.git
-cd BioLungNet-Lung-Cancer-Detection
-```
-
----
-
-## Step 2 — Install Dependencies
-
-```bash id="run2"}
-pip install -r requirements.txt
-```
-
----
-
-## Step 3 — Run Data Augmentation
-
-```bash id="run3"}
-python Program/AgumentationProgram.py
-```
-
----
-
-## Step 4 — Train the Model
-
-Open the notebook:
-
-```text id="run4"}
-Program/BioLungNet_Main.ipynb
-```
-
-Run all cells to train the BioLungNet model.
-
----
-
-## Step 5 — Predict Single Image
-
-```bash id="run5"}
-python Program/Single_Image_Predict.py
-```
 
 The script will classify the CT scan image as:
 
